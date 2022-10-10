@@ -4,29 +4,34 @@
 // P:
 
 function isValid(s) {
-  // Conditional that returns false if the length of the string is not even. Why? Because that means there are not enough characters to make pairs.
+  // If the input string is valid there must be an even number of characters (need to pair brackets together)
+  // Conditional that checks if the input string length is even
   if (s.length % 2 === 1) return false;
 
-  // Create a stack (array) which will hold the respective closing characters
+  // Stack Method
+  // Create a stack that will hold the corresponding closing bracket of each open bracket that appears in the loop
   let stack = [];
-  // Create an object that holds the three parentheses pairs
+
+  // Create a bracket object that will determine which closing bracket goes into the stack
   const brackets = {
     "(": ")",
     "[": "]",
     "{": "}",
   };
 
-  // Create a for loop that will check each character of the string. If the character is an open bracket, then check brackets[character] and add its value (a closing bracket) to the stack. If the character is a closing bracket, then confirm the last character
-  // added to the stack is the same type of closing bracket (because brackets must be closed in the correct order)
+  // For loop that checks each character of the string. If the character is an open bracket, then add its closing bracket to the stack. If the character is a closing bracket, confirm that the last closing bracket in the stack is the same as the character closing bracket.
   for (let i = 0; i < s.length; i++) {
-    const bracket = s[i];
+    const character = s[i];
 
-    if (brackets[bracket]) {
-      stack.push(brackets[bracket]);
-    } else if (bracket !== stack.pop()) {
+    // If open bracket, then add it's corresponding closing bracket to the stack array
+    if (brackets[character]) {
+      stack.push(brackets[character]);
+    } else if (character !== stack.pop()) {
+      // If closing bracket, then confirm the last bracket added to the stack is the same as the character (because brackets must be closed in order)
       return false;
     }
   }
 
+  // If all brackets are closed in the correct order, then the stack should be empty due to stack.pop() removing them from the stack
   return stack.length === 0;
 }
