@@ -1,7 +1,15 @@
 function search(nums, target) {
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === target) return i;
+  let low = 0;
+  let high = nums.length - 1;
+
+  while (low < high) {
+    let mid = low + Math.floor((high - low + 1) / 2);
+    if (target < nums[mid]) {
+      high = mid - 1;
+    } else {
+      low = mid;
+    }
   }
 
-  return -1;
+  return nums[low] == target ? low : -1;
 }
