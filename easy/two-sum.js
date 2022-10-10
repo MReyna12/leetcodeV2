@@ -4,11 +4,8 @@
 // P:
 
 function twoSum(nums, target) {
-  // Create an empty object that will hold keys (numbers in the array) and values (their respective index position in said array)
   const numsObject = {};
 
-  // Run a for loop with a conditional. The conditional checks to see if target minus each num in the array exists in the numsObject. Ex: numsObject[target - nums[i]] !== undefined.
-  // If the key/value does exist in the object, then return the value and the current i value, which will represent the two indices that equate to the target.
   for (let i = 0; i < nums.length; i++) {
     const number = nums[i];
 
