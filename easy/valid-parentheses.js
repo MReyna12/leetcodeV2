@@ -28,7 +28,5 @@ function isValid(s) {
     }
   }
 
-  return !stack.length;
+  return stack.length === 0;
 }
-
-isValid("()");
