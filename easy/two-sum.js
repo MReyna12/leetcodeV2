@@ -4,15 +4,17 @@
 // P:
 
 function twoSum(nums, target) {
-  const numsObject = {};
+  // Create object to hold keys (number in the array) and values (number's index)
+  let indexObject = {};
 
+  // For loop to check if the target - number exists as a key in the indexObject. If it does, return the index of target - number and the current value of i (which represents the index of the current number in the array)
   for (let i = 0; i < nums.length; i++) {
     const number = nums[i];
 
-    if (numsObject[target - number] !== undefined) {
-      return [numsObject[target - number], i];
+    if (indexObject[target - number] !== undefined) {
+      return [indexObject[target - number], i];
+    } else {
+      indexObject[number] = i;
     }
-
-    numsObject[number] = i;
   }
 }
