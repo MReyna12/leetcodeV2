@@ -1,22 +1,26 @@
 function majorityElement(nums) {
-  const object = {};
+  let object = {};
 
   for (let i = 0; i < nums.length; i++) {
-    object[nums[i]] = object[nums[i]] + 1 || 1;
-    if (object[nums[i]] > nums.length / 2) return nums[i];
+    const num = nums[i];
+
+    object[num] ? (object[num] += 1) : (object[num] = 1);
+    if (object[num] > nums.length / 2) {
+      return nums[i];
+    }
   }
 }
 
 function majorityElement(nums) {
-  let map = {};
+  let object = {};
 
-  for (let num of nums) {
-    map[num] = map[num] ? map[num] + 1 : 1;
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+
+    object[num] ? (object[num] += 1) : (object[num] = 1);
   }
 
-  for (const key in map) {
-    if (map[key] > nums.length / 2) {
-      return key;
-    }
+  for (const key in object) {
+    if (object[key] > nums.length / 2) return key;
   }
 }
