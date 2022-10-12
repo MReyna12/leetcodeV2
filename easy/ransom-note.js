@@ -1,23 +1,23 @@
 function canConstruct(ransomNote, magazine) {
-  // If there are not enough letters in the magazine to create the ransomNote, then we know to return false.
+  // Magazine has to have at least the same number of letters as ransomNote, if it does not then it cannot match ransomNote
   if (magazine.length < ransomNote.length) return false;
 
-  // Create an object that will hold all of the characters from the magazine string.
+  // Create an object that will hold all of the letters of magazine
   let message = {};
 
-  // Add all the letters from magazine into an object.
+  // For loop to place each letter of magazine into the message
   for (let i = 0; i < magazine.length; i++) {
     const character = magazine[i];
 
     message[character] ? (message[character] += 1) : (message[character] = 1);
   }
 
-  // Each letter from the ransom note needs to be in the magazine, so loop through each character of the ransom note and check it against the message object. If there are too many characters or a new character in the ransom note, then return false
-  for (const character of ransomNote) {
-    if (!message[character]) {
+  // Loop through each character of ransomNote string and confirm that it is in the message object. If the loop completes without failing then we know magainze can build ransomNote
+  for (const char of ransomNote) {
+    if (!message[char]) {
       return false;
-    } else if (message[character]) {
-      message[character] -= 1;
+    } else if (message[char]) {
+      message[char] -= 1;
     }
   }
 
