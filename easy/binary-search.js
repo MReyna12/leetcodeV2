@@ -1,15 +1,19 @@
 function search(nums, target) {
-  let low = 0;
-  let high = nums.length - 1;
+  let lo = 0;
+  let hi = nums.length;
 
-  while (low < high) {
-    let mid = low + Math.floor((high - low + 1) / 2);
-    if (target < nums[mid]) {
-      high = mid - 1;
-    } else {
-      low = mid;
+  while (lo < hi) {
+    const mid = Math.floor(lo + (hi - lo) / 2);
+    const value = nums[mid];
+
+    if (value === target) {
+      return mid;
+    } else if (value > target) {
+      hi = mid;
+    } else if (value < target) {
+      lo = mid + 1;
     }
   }
 
-  return nums[low] == target ? low : -1;
+  return -1;
 }
