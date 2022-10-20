@@ -15,11 +15,11 @@ while(lo < hi) {
 */
 
 function searchInsert(nums, target) {
-  let lo = 0;
+  let low = 0;
   let hi = nums.length;
 
   while (lo < hi) {
-    const mid = Math.floor(lo + (hi - lo) / 2);
+    const mid = Math.floor(low + (hi - low) / 2);
     const value = nums[mid];
 
     if (value === target) {
@@ -27,9 +27,9 @@ function searchInsert(nums, target) {
     } else if (value > target) {
       hi = mid;
     } else if (value < target) {
-      lo = mid + 1;
+      low = mid + 1;
     }
   }
 
-  return lo;
+  return low;
 }
