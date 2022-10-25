@@ -8,55 +8,33 @@ function lengthOfLongestSubstring(s) {
   Return the maxValue once the while loop finishes running.
   */
 
-  // Two edge cases - if s.length === 0 and if s.length === 1
+  // Since the string length cannot go below zero AND if the length is 1 we know we can just return 1, create conditional to cover s.length of 0 and 1
   if (s.length < 2) return s.length;
 
-  // Create four variables: Set object, left pointer, right pointer, and maxSubstringLength
-  let mySet = new Set();
+  // Initialize four variables:
+  // - Create set object (only unique values can be placed in a set object)
+  // - Create two pointers, a left and right
+  // - Create a maxSubstringLength variable that will return the largest substring w/o repeating characters
+
+  let substringObject = new Set();
   let left = 0;
   let right = 0;
   let maxSubstringLength = 0;
 
-  // While loop that runs until the right pointer is no longer less than the s.length
+  // Create a while loop that runs until the right pointer is no longer less than the input string length
   while (right < s.length) {
     const rightCharacter = s[right];
-    if (!mySet.has(rightCharacter)) {
-      mySet.add(rightCharacter);
+    // Conditional that checks to see if the rightCharacter is part of the substringObject, if not then add it to the object, increase right pointer by 1, and calculate the maxSubstringLength
+    if (!substringObject.has(rightCharacter)) {
+      substringObject.add(rightCharacter);
       right++;
-      maxSubstringLength = Math.max(maxSubstringLength, mySet.size);
+      maxSubstringLength = Math.max(maxSubstringLength, substringObject.size);
     } else {
-      mySet.delete(s[left]);
+      const leftCharacter = s[left];
+      substringObject.delete(leftCharacter);
       left++;
     }
   }
 
   return maxSubstringLength;
 }
-
-const lengthOfLongestSubstring = function (s) {
-  // create hash map and initialize variables
-  let hashMap = {};
-  let maxLen = 0,
-    start = 0;
-
-  // iterate through the string
-  for (let end = 0; end < s.length; end++) {
-    // hold the curr character
-    const rightChar = s[end];
-
-    // if the character already exists
-    if (rightChar in hashMap) {
-      // Since in the current window, we won't have any "rightChar" after it's previous occurence,
-      // if the start index is already ahead of the index of the last occurrence, we'll keep the start index.
-
-      start = Math.max(start, hashMap[rightChar] + 1);
-    }
-
-    // add the character to the map;
-    hashMap[rightChar] = end;
-
-    // evaluate the max length
-    maxLen = Math.max(maxLen, end - start + 1);
-  }
-  return maxLen;
-};
