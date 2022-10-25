@@ -8,23 +8,24 @@ function lengthOfLongestSubstring(s) {
   Return the maxValue once the while loop finishes running.
   */
 
-  if (s.length === 0) return 0;
-  if (s.length === 1) return 1;
+  // Two edge cases - if s.length === 0 and if s.length === 1
+  if (s.length < 2) return s.length;
 
-  let characterObject = new Set();
+  // Create four variables: Set object, left pointer, right pointer, and maxSubstringLength
+  let mySet = new Set();
   let left = 0;
   let right = 0;
   let maxSubstringLength = 0;
 
+  // While loop that runs until the right pointer is no longer less than the s.length
   while (right < s.length) {
     const rightCharacter = s[right];
-    if (!characterObject.has(rightCharacter)) {
-      characterObject.add(rightCharacter);
+    if (!mySet.has(rightCharacter)) {
+      mySet.add(rightCharacter);
       right++;
-      maxSubstringLength = Math.max(maxSubstringLength, characterObject.size);
+      maxSubstringLength = Math.max(maxSubstringLength, mySet.size);
     } else {
-      const leftCharacter = s[left];
-      characterObject.delete(leftCharacter);
+      mySet.delete(s[left]);
       left++;
     }
   }
