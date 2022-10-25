@@ -12,30 +12,17 @@ function longestPalindrome(s) {
     - Return the longest palindrome
   */
 
-  if (s.length < 2) return s;
+  if (s.length === 1) return s;
 
-  let longestSubstringPalindrome = "";
+  // Create the longest substring variable
+  let longestPalindromicSubstring = "";
 
-  const determineLongestPalindrome = (str, i, j) => {
-    while (i >= 0 && j < str.length && str[i] === str[j]) {
+  // Create a helper function that will use two pointers to check the characters next to a middle character
+  const findPalindrome = (str, i, j) => {
+    while (i >= 0 && j < s.length && str[i] === str[j]) {
       i -= 1;
       j += 1;
     }
-
-    return str.slice(i + 1, j); // The last two valid indexes before the loop breaks. We don't need to do j - 1 because the second index in slice is non-inclusive
+    return str.slice(i + 1, j); // The last two valid indices before the loop breaks. We do not need to do j - 1 because j is non-inclusive.
   };
-
-  for (let i = 0; i < s.length; i++) {
-    const firstResult = determineLongestPalindrome(s, i, i); // Covers when the resulting palindrome is an odd number of characters.
-    const secondResult = determineLongestPalindrome(s, i, i + 1); // Covers when the resulting palindrome is an even number of characters.
-
-    const palindrome =
-      firstResult.length > secondResult.length ? firstResult : secondResult;
-
-    if (palindrome.length > longestSubstringPalindrome.length) {
-      longestSubstringPalindrome = palindrome;
-    }
-  }
-
-  return longestSubstringPalindrome;
 }
