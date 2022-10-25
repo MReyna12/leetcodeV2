@@ -25,4 +25,22 @@ function longestPalindrome(s) {
     }
     return str.slice(i + 1, j); // The last two valid indices before the loop breaks. We do not need to do j - 1 because j is non-inclusive.
   };
+
+  for (let i = 0; i < s.length; i++) {
+    const oddCharacterPalindrome = findPalindrome(s, i, i);
+    const evenCharacterPalindrome = findPalindrome(s, i, i + 1);
+
+    const longestComparisonPalindrome =
+      oddCharacterPalindrome.length > evenCharacterPalindrome.length
+        ? oddCharacterPalindrome
+        : evenCharacterPalindrome;
+
+    if (
+      longestComparisonPalindrome.length > longestPalindromicSubstring.length
+    ) {
+      longestPalindromicSubstring = longestComparisonPalindrome;
+    }
+  }
+
+  return longestPalindromicSubstring;
 }
