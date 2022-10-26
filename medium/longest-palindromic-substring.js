@@ -44,3 +44,33 @@ function longestPalindrome(s) {
 
   return longestPalindromicSubstring;
 }
+
+const longestPalindrome = (s) => {
+  if (s.length === 1) return s;
+
+  let longestPalindromicSubstring = "";
+
+  const determinePalindrome = (str, i, j) => {
+    while (i >= 0 && j < s.length && str[i] === str[j]) {
+      i -= 1;
+      j += 1;
+    }
+    return str.slice(i + 1, j);
+  };
+
+  for (let i = 0; i < s.length; i++) {
+    const oddLengthPalindrome = determinePalindrome(s, i, i);
+    const evenLengthPalindrome = determinePalindrome(s, i, i + 1);
+
+    const longestResult =
+      oddLengthPalindrome.length > evenLengthPalindrome.length
+        ? oddLengthPalindrome
+        : evenLengthPalindrome;
+
+    if (longestResult.length > longestPalindromicSubstring.length) {
+      longestPalindromicSubstring = longestResult;
+    }
+  }
+
+  return longestPalindromicSubstring;
+};
