@@ -38,3 +38,27 @@ function lengthOfLongestSubstring(s) {
 
   return maxSubstringLength;
 }
+
+const lengthOfLongestSubstring = (s) => {
+  if (s.length < 2) return s.length;
+
+  let characterObject = new Set();
+  let left = 0;
+  let right = 0;
+  let maxSubstringLength = 0;
+
+  while (right < s.length) {
+    const rightCharacter = s[right];
+    if (!characterObject.has(rightCharacter)) {
+      characterObject.add(rightCharacter);
+      right++;
+      maxSubstringLength = Math.max(maxSubstringLength, characterObject.size);
+    } else {
+      const leftCharacter = s[left];
+      characterObject.delete(leftCharacter);
+      left++;
+    }
+  }
+
+  return maxSubstringLength;
+};
