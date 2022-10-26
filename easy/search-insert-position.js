@@ -18,7 +18,7 @@ function searchInsert(nums, target) {
   let low = 0;
   let hi = nums.length;
 
-  while (lo < hi) {
+  while (low < hi) {
     const mid = Math.floor(low + (hi - low) / 2);
     const value = nums[mid];
 
