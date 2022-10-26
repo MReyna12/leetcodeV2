@@ -1,17 +1,17 @@
 function search(nums, target) {
-  let low = 0;
+  let lo = 0;
   let hi = nums.length;
 
-  while (low < hi) {
-    const mid = Math.floor(low + (hi - low) / 2);
+  while (lo < hi) {
+    const mid = Math.floor(lo + (hi - lo) / 2);
     const value = nums[mid];
 
     if (value === target) {
       return mid;
+    } else if (value < target) {
+      lo = mid + 1;
     } else if (value > target) {
       hi = mid;
-    } else if (value < target) {
-      low = mid + 1;
     }
   }
 
