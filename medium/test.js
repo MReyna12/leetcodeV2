@@ -68,13 +68,12 @@ const memoize = (callback) => {
     if (n in cache) {
       return cache[n];
     } else {
-      let result = callback;
+      let result = callback(n);
       cache[n] = result;
+      console.log(cache);
       return result;
     }
   };
 };
 
-const memoizedTimes11 = memoize(times11(11));
-
-memoizedTimes11(11);
+const memoizedTimes11 = memoize(times11);
