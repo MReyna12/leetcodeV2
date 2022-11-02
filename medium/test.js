@@ -55,6 +55,26 @@ const memoizedClosureTimes10 = () => {
   };
 };
 
-const memoClosureTimes10 = memoizedClosureTimes10();
+// Task 4: Make your memo function generic and accept the times10 function as a callback rather than defining the n * 10 logic inside the if/else or pull it in from the global scope.
+// protip: Take advantage of the fact that parameters are saved in the closure as well, just like the cache from the previous example.
 
-memoClosureTimes10(10);
+const times11 = (n) => {
+  return n * 11;
+};
+
+const memoize = (callback) => {
+  let cache = {};
+  return (n) => {
+    if (n in cache) {
+      return cache[n];
+    } else {
+      let result = callback;
+      cache[n] = result;
+      return result;
+    }
+  };
+};
+
+const memoizedTimes11 = memoize(times11(11));
+
+memoizedTimes11(11);
