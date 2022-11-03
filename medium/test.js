@@ -131,3 +131,27 @@ const factorial = memoizer((x) => {
 });
 
 //factorial(5) - 5 becomes the argument of the function in memoizer
+
+const memoizer1 = (callbackFN) => {
+  let cache = {};
+  return (...args) => {
+    const n = args[0];
+    if (n in cache) {
+      return cache[n];
+    } else {
+      const result = callbackFN(n);
+      cache[n] = result;
+      return cache[n];
+    }
+  };
+};
+
+const factorial1 = memoizer1((x) => {
+  if (x === 0) {
+    return 1;
+  } else {
+    return x * factorial1(x - 1);
+  }
+});
+
+//factorial1(5);
