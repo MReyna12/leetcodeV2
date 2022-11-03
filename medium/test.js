@@ -155,3 +155,36 @@ const factorial1 = memoizer1((x) => {
 });
 
 //factorial1(5);
+
+// Divide and Conquer
+
+function binarySearch(array, num) {
+  let lo = 0;
+  let hi = array.length;
+
+  while (lo < hi) {
+    let mid = Math.floor(lo + (hi - lo) / 2);
+    let value = array[mid];
+
+    if (value === num) {
+      return true;
+    } else if (value < num) {
+      lo = mid + 1;
+    } else if (value > num) {
+      hi = mid;
+    }
+  }
+
+  return false;
+}
+
+// Exercise 1: Implement linear search
+function linearSearch(list, item) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i] === item) {
+      return i;
+    }
+  }
+
+  return -1;
+}
