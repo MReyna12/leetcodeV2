@@ -188,3 +188,77 @@ function linearSearch(list, item) {
 
   return -1;
 }
+
+// Bubble sort - Compares adjacent indices
+function bubbleSort(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - 1 - i; j++) {
+      if (array[j] > array[j + 1]) {
+        const temp = array[j + 1];
+        array[j + 1] = array[j];
+        array[j] = temp;
+      }
+    }
+  }
+
+  return array;
+}
+
+function mergeSort(array) {
+  if (array.length === 1) return array;
+
+  const n = array.length;
+  const mid = Math.floor(n / 2);
+  const left = array.slice(0, mid);
+  const right = array.slice(mid);
+
+  const leftSorted = mergeSort(left);
+  const rightSorted = mergeSort(right);
+
+  return merge(leftSorted, rightSorted);
+}
+
+function merge(leftArray, rightArray) {
+  // Console.log the arrays that are comming in and then the indices to see when the indices are being reset. Not sure how concat is working. It seems like if there are left over values after the while loop then you are just making sure those are added.
+  // Both sides should not have leftover values so only one will concat?
+  let sortedArray = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+    if (leftArray[leftIndex] < rightArray[rightIndex]) {
+      sortedArray.push(leftArray[leftIndex]);
+      leftIndex++;
+    } else {
+      sortedArray.push(rightArray[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  console.log(`leftIndex: ${leftIndex} and rightIndex: ${rightIndex}`);
+
+  return sortedArray
+    .concat(leftArray.slice(leftIndex))
+    .concat(rightArray.slice(rightIndex));
+}
+
+mergeSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]);
+
+//[9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
+//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+//[10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+/* 
+while (leftArray.length !== 0 && rightArray.length !== 0) {
+    console.log(leftArray.length)
+    if (leftArray[leftIndex] < rightArray[rightIndex]) {
+      const leftValue = leftArray.shift();
+      sortedArray.push(leftValue);
+      leftIndex += 1;
+    } else {
+      const rightValue = rightArray.shift();
+      sortedArray.push(rightValue);
+      rightIndex += 1;
+    }
+  }
+*/
