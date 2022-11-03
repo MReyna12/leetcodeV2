@@ -76,4 +76,58 @@ const memoize = (callback) => {
   };
 };
 
-const memoizedTimes11 = memoize(times11);
+// Recursion
+//  1. Identify base case(s)
+//  2. Identify recursive case(s)
+//  3. Return where appropriate
+//  4. Write procedures for each case that bring you closer to the base case(s)
+
+// Exercise 1: Turn the following recursive function into an iterative version
+function joinElements(array, joinString) {
+  function recurse(index, resulSoFar) {
+    resulSoFar += array[index];
+
+    if (index === array.length - 1) {
+      return resulSoFar;
+    } else {
+      return recurse(index + 1, resulSoFar + joinString);
+    }
+  }
+
+  return recurse(0, "");
+}
+
+function iterativeJoinElements(array, joinString) {
+  let result = "";
+
+  for (let i = 0; i < array.length - 1; i++) {
+    result += array[i] + joinString;
+  }
+
+  return result + array[array.length - 1];
+}
+
+// Exercise 2: Write your own recursive factorial method and memoize it
+const memoizer = (callbackFN) => {
+  let cache = {};
+  return (...args) => {
+    let n = args[0];
+    if (n in cache) {
+      return cache[n];
+    } else {
+      let result = callbackFN(n);
+      cache[n] = result;
+      return cache[n];
+    }
+  };
+};
+
+const factorial = memoizer((x) => {
+  if (x === 0) {
+    return 1;
+  } else {
+    return x * factorial(x - 1);
+  }
+});
+
+//factorial(5) - 5 becomes the argument of the function in memoizer
