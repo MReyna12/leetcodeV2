@@ -262,3 +262,47 @@ while (leftArray.length !== 0 && rightArray.length !== 0) {
     }
   }
 */
+
+// November 7th Practice
+
+// Binary Search
+function binary(array, target) {
+  let lo = 0;
+  let hi = array.length;
+
+  while (lo < hi) {
+    const mid = Math.floor(lo + (hi - lo) / 2);
+    const value = array[mid];
+    console.log(mid, value);
+
+    if (value === target) {
+      return mid;
+    } else if (value < target) {
+      lo = mid + 1;
+    } else if (value > target) {
+      hi = mid;
+    }
+  }
+
+  return -1;
+}
+
+binary([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+
+// Bubble sort
+function bubble(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - i; j++) {
+      if (array[j] > array[j + 1]) {
+        const temp = array[j + 1];
+        array[j + 1] = array[j];
+        array[j] = temp;
+      }
+    }
+  }
+  return array;
+}
+
+bubble([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]);
+
+// Merge sort
