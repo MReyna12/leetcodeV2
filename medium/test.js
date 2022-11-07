@@ -306,3 +306,41 @@ function bubble(array) {
 bubble([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]);
 
 // Merge sort
+function mSort(array) {
+  // Return array if the length of the array is less than 2
+  if (array.length < 2) return array;
+
+  const mid = Math.floor(array.length / 2);
+  const left = array.slice(0, mid);
+  const right = array.slice(mid);
+
+  // Each variable will eventually equal an array with one value
+  const leftSorted = mSort(left);
+  const rightSorted = mSort(right);
+
+  return merge1(leftSorted, rightSorted);
+}
+
+function merge1(leftArray, rightArray) {
+  // Console.log the arrays that are comming in and then the indices to see when the indices are being reset. Not sure how concat is working. It seems like if there are left over values after the while loop then you are just making sure those are added.
+  // Both sides should not have leftover values so only one will concat?
+  let sortedArray = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+    if (leftArray[leftIndex] < rightArray[rightIndex]) {
+      sortedArray.push(leftArray[leftIndex]);
+      leftIndex++;
+    } else {
+      sortedArray.push(rightArray[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return sortedArray
+    .concat(leftArray.slice(leftIndex))
+    .concat(rightArray.slice(rightIndex));
+}
+
+mSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]);
