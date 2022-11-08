@@ -42,3 +42,30 @@ searchMatrixBinaryRow(
   ],
   7
 );
+
+// Practice Attempt 2
+// Loop + Binary Search
+
+const searchMatrixBinaryRow2 = (matrix, target) => {
+  // Create our first loop to look at each inner array
+  for (let i = 0; i < matrix.length; i++) {
+    // Use binary search to determine if the target is inside of an array
+    let lo = 0;
+    let hi = matrix[i].length;
+
+    while (lo < hi) {
+      const mid = Math.floor(lo + (hi - lo) / 2);
+      const value = matrix[i][mid];
+
+      if (value === target) {
+        return true;
+      } else if (value < target) {
+        lo = mid + 1;
+      } else {
+        hi = mid;
+      }
+    }
+  }
+
+  return false;
+};
