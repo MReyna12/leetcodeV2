@@ -344,3 +344,39 @@ function merge1(leftArray, rightArray) {
 }
 
 mSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]);
+
+// Merge sort practice 2
+function mSort2(array) {
+  if (array.length === 1) return array;
+
+  const mid = Math.floor(array.length / 2);
+  const left = array.slice(0, mid);
+  const right = array.slice(mid);
+
+  const leftSorted = mSort2(left);
+  const rightSorted = mSort2(right);
+
+  return merge2(leftSorted, rightSorted);
+}
+
+function merge2(leftArray, rightArray) {
+  let sortedArray = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+    if (leftArray[leftIndex] < rightArray[rightIndex]) {
+      sortedArray.push(leftArray[leftIndex]);
+      leftIndex++;
+    } else {
+      sortedArray.push(rightArray[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return sortedArray
+    .concat(leftArray.slice(leftIndex))
+    .concat(rightArray.slice(rightIndex));
+}
+
+mSort2([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]);
