@@ -425,3 +425,41 @@ const makeChangeWithRecursion = (value) => {
 
   return minCoins + 1;
 };
+
+// Merge Sort Practice
+
+function mSort3(array) {
+  // Base Case
+  if (array.length === 1) return array;
+
+  const mid = Math.floor(array.length / 2);
+  const left = array.slice(0, mid);
+  const right = array.slice(mid);
+
+  const leftSorted = mSort3(left);
+  const rightSorted = mSort3(right);
+
+  return merge3(leftSorted, rightSorted);
+}
+
+function merge3(leftSorted, rightSorted) {
+  let sortedArray = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < leftSorted.length && rightIndex < rightSorted.length) {
+    if (leftSorted[leftIndex] < rightSorted[rightIndex]) {
+      sortedArray.push(leftSorted[leftIndex]);
+      leftIndex++;
+    } else {
+      sortedArray.push(rightSorted[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return sortedArray
+    .concat(leftSorted.slice(leftIndex))
+    .concat(rightSorted.slice(rightIndex));
+}
+
+mSort3([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]);
