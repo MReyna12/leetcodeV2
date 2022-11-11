@@ -1,7 +1,10 @@
 function search(nums, target) {
+  // Create a lo and high pointer that will help with shrinking the number of elements being searched for the target
   let lo = 0;
   let hi = nums.length;
 
+  // while loop which will include a middle index number and a middle value in the array
+  // Shift lo or hi based on placement of the value in the array in comparison to the target
   while (lo < hi) {
     const mid = Math.floor(lo + (hi - lo) / 2);
     const value = nums[mid];
@@ -10,7 +13,7 @@ function search(nums, target) {
       return mid;
     } else if (value < target) {
       lo = mid + 1;
-    } else if (value > target) {
+    } else {
       hi = mid;
     }
   }
