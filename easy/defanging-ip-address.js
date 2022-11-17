@@ -19,5 +19,3 @@ function defangIPaddr(address) {
 function defangIPaddr(address) {
   return address.split(".").join("[.]");
 }
-
-defangIPaddr("1.1.1.1");
