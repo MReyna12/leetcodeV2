@@ -75,5 +75,5 @@ const pq = new PriorityQueue();
 pq.enqueue(["Michael Reyna", 5]);
 pq.enqueue(["Hillery Reyna", 3]);
 pq.enqueue(["Kira Reyna", 2]);
-pq.enqueue(["Emily Reyna", 1]);
+pq.enqueue(["Emily Reyna", 3]);
 pq.printCollection();
