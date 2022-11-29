@@ -19,3 +19,23 @@ function majorityElement(nums) {
     }
   }
 }
+
+function majorityElement(nums) {
+  if (nums.length === 1) return nums[0];
+
+  const majority = Math.floor(nums.length / 2);
+
+  let elementCounter = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    if (elementCounter[nums[i]] === undefined) {
+      elementCounter[nums[i]] = 1;
+    } else {
+      elementCounter[nums[i]] += 1;
+    }
+
+    if (elementCounter[nums[i]] > majority) {
+      return nums[i];
+    }
+  }
+}
