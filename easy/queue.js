@@ -200,13 +200,54 @@ function priorityQueueTwo() {
   };
 }
 
-const testQueue = new priorityQueueTwo();
-testQueue.enqueue(["Michael", 3]);
-testQueue.enqueue(["Hillery", 1]);
-testQueue.enqueue(["Kira", 2]);
-testQueue.print(); // [Hillery, Kira, Michael]
-console.log(testQueue.dequeue()); // Hillery
-testQueue.print(); // [Kira, Michael]
-console.log(testQueue.front()); // Kira
-console.log(testQueue.size()); // 2
-testQueue.isEmpty(); // false
+function priorityQueueThree() {
+  // Create queue
+  let collection = [];
+
+  // Print the current queue
+  this.print = function () {
+    console.log(collection);
+  };
+
+  // Add elements to the queue based on priority
+  this.enqueue = function (element) {
+    // If queue is empty, then simply add the element via push
+    if (this.isEmpty()) {
+      collection.push(element);
+    } else {
+      // If the queue is not empty, then loop through the queue to determine where the element should be added in the queue - ascending order
+      let added = false;
+      for (let i = 0; i < collection.length; i++) {
+        if (element[1] < collection[i][1]) {
+          collection.splice(i, 0, element);
+          added = true;
+          break;
+        }
+      }
+
+      if (!added) collection.push(element);
+    }
+  };
+
+  // Removal of the first element from the queue
+  this.dequeue = function () {
+    return collection.shift();
+  };
+
+  // Return the first element of the queue
+  this.front = function () {
+    return collection[0];
+  };
+
+  // Determine the size of the queue
+  this.size = function () {
+    return collection.length;
+  };
+
+  // Determine if the queue is empty
+  this.isEmpty = function () {
+    return collection.length === 0;
+  };
+}
+
+const testQueue = new priorityQueueThree();
