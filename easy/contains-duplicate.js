@@ -29,3 +29,31 @@ const containsDuplicate2 = (nums) => {
 
   return false;
 };
+
+function containsDuplicate(nums) {
+  let duplicateChecker = new Set();
+
+  for (let i = 0; i < nums.length; i++) {
+    if (duplicateChecker.has(nums[i])) {
+      return true;
+    }
+
+    duplicateChecker.add(nums[i]);
+  }
+
+  return false;
+}
+
+function containsDuplicate(nums) {
+  let duplicateChecker = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    if (duplicateChecker[nums[i]]) {
+      return true;
+    }
+
+    duplicateChecker[nums[i]] = true;
+  }
+
+  return false;
+}
