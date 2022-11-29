@@ -34,9 +34,55 @@ function Stack() {
 }
 
 const testStack = new Stack();
-testStack.push(1);
-testStack.push(2);
-testStack.push(3);
-testStack.print();
-console.log(testStack.remove());
-console.log(testStack.top());
+
+// Implement queue using stacks
+const MyQueue = function () {
+  this.inStack = [];
+  this.outStack = [];
+};
+
+MyQueue.prototype.push = function (x) {
+  this.inStack.push(x);
+};
+
+MyQueue.prototype.pop = function () {
+  while (this.inStack.length !== 0) {
+    this.outStack.push(this.inStack.pop());
+  }
+
+  const front = this.outStack.pop();
+
+  while (this.outStack.length !== 0) {
+    this.inStack.push(this.outStack.pop());
+  }
+
+  return front;
+};
+
+MyQueue.prototype.peek = function () {
+  if (this.empty()) return "Nothing to peek, the stack is empty";
+
+  while (this.inStack.length !== 0) {
+    this.outStack.push(this.inStack.pop());
+  }
+
+  const front = this.outStack.pop();
+  this.outStack.push(front);
+
+  while (this.outStack.length !== 0) {
+    this.inStack.push(this.outStack.pop());
+  }
+
+  return front;
+};
+
+MyQueue.prototype.empty = function () {
+  return this.inStack.length === 0;
+};
+
+const obj = new MyQueue();
+obj.push("x");
+const param_2 = obj.pop();
+const param_3 = obj.peek();
+const param_4 = obj.empty();
+console.log(param_2, param_3, param_4);
