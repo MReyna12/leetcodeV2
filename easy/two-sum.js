@@ -11,3 +11,21 @@ function twoSum(nums, target) {
     }
   }
 }
+
+function twoSum(nums, target) {
+  if (nums.length === 2) return [0, 1];
+
+  let hash = {};
+
+  // Loop through the nums array
+  // Store the current number + its index position in the hash object
+  // If target minus current number in array exists in the hash, then return the index of the current number + the index stored with the
+
+  for (let i = 0; i < nums.length; i++) {
+    if (hash[target - nums[i]] !== undefined) {
+      return [hash[target - nums[i]], i];
+    }
+
+    hash[nums[i]] = i;
+  }
+}
