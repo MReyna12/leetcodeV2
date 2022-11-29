@@ -251,3 +251,46 @@ function priorityQueueThree() {
 }
 
 const testQueue = new priorityQueueThree();
+
+// Implement stack using queues
+const MyStack = function () {
+  this.inQueue = [];
+  this.outQueue = [];
+};
+
+MyStack.prototype.push = function (x) {
+  this.inQueue.push(x);
+};
+
+MyStack.prototype.pop = function () {
+  while (this.inQueue.length > 1) {
+    this.outQueue.push(this.inQueue.shift());
+  }
+
+  let number = this.inQueue.shift();
+  this.inQueue = this.outQueue;
+  this.outQueue = [];
+  return number;
+};
+
+MyStack.prototype.top = function () {
+  while (this.inQueue.length > 1) {
+    this.outQueue.push(this.inQueue.shift());
+  }
+
+  let topElement = this.inQueue.shift();
+  this.outQueue.push(topElement);
+  this.inQueue = this.outQueue;
+  this.outQueue = [];
+  return topElement;
+};
+
+MyStack.prototype.empty = function () {
+  return this.inQueue.length === 0 && this.outQueue.length === 0;
+};
+
+const obj = new MyStack();
+obj.push(x);
+const param_2 = obj.pop();
+const param_3 = obj.top();
+const param_4 = obj.empty();
