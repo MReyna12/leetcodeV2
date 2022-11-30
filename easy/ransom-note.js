@@ -23,3 +23,27 @@ function canConstruct(ransomNote, magazine) {
 
   return true;
 }
+
+function canConstruct(ransomNote, magazine) {
+  if (magazine.length < ransomNote.length) return false;
+
+  let characterCount = {};
+
+  for (let i = 0; i < magazine.length; i++) {
+    if (characterCount[magazine[i]] === undefined) {
+      characterCount[magazine[i]] = 1;
+    } else {
+      characterCount[magazine[i]] += 1;
+    }
+  }
+
+  for (const letter of ransomNote) {
+    if (!characterCount[letter]) {
+      return false;
+    } else {
+      characterCount[letter] -= 1;
+    }
+  }
+
+  return true;
+}
