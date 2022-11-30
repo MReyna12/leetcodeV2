@@ -22,3 +22,27 @@ function isAnagram(s, t) {
 
   return true;
 }
+
+function isAnagram(s, t) {
+  if (s.length !== t.length) return false;
+
+  let characterComparison = {};
+
+  for (let i = 0; i < t.length; i++) {
+    if (characterComparison[t[i]] === undefined) {
+      characterComparison[t[i]] = 1;
+    } else {
+      characterComparison[t[i]] += 1;
+    }
+  }
+
+  for (const character of s) {
+    if (!characterComparison[character]) {
+      return false;
+    } else {
+      characterComparison[character] -= 1;
+    }
+  }
+
+  return true;
+}
