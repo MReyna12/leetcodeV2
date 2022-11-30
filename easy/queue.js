@@ -294,3 +294,86 @@ obj.push(x);
 const param_2 = obj.pop();
 const param_3 = obj.top();
 const param_4 = obj.empty();
+
+// Queue practice
+
+function QueueFour() {
+  let collection = [];
+
+  // Print collection
+  this.print = function () {
+    console.log(collection);
+  };
+
+  // Add element to the queue
+  this.enqueue = function (element) {
+    collection.push(element);
+  };
+
+  // Remove an element from the queue and return it
+  this.dequeue = function () {
+    return collection.shift();
+  };
+
+  // Return the front element of the queue
+  this.front = function () {
+    return collection[0];
+  };
+
+  // Return the length of the queue
+  this.size = function () {
+    return collection.length;
+  };
+
+  // Determine if the queue is empty
+  this.isEmpty = function () {
+    return collection.length === 0;
+  };
+}
+
+function PriorityQueueFour() {
+  let collection = [];
+
+  // Print the queue
+  this.print = function () {
+    console.log(collection);
+  };
+
+  // Add an element to the queue based on its priority
+  this.enqueue = function (element) {
+    if (this.isEmpty()) {
+      collection.push(element);
+    } else {
+      let added = false;
+      for (let i = 0; i < collection.length; i++) {
+        if (element[1] < collection[i][1]) {
+          collection.splice(i, 0, element);
+          added = true;
+          break;
+        }
+      }
+      if (!added) collection.push(element);
+    }
+  };
+
+  // Remove the first element added to the queue
+  this.dequeue = function () {
+    return collection.shift();
+  };
+
+  // Get the front element
+  this.front = function () {
+    return collection[0];
+  };
+
+  // Determine if the queue is empty
+  this.isEmpty = function () {
+    return collection.length === 0;
+  };
+}
+
+const pqTest = new PriorityQueueFour();
+pqTest.enqueue(["Michael", 3]);
+pqTest.enqueue(["Hillery", 1]);
+pqTest.enqueue(["Kira", 2]);
+pqTest.print();
