@@ -377,3 +377,54 @@ pqTest.enqueue(["Michael", 3]);
 pqTest.enqueue(["Hillery", 1]);
 pqTest.enqueue(["Kira", 2]);
 pqTest.print();
+
+function MyStackTwo() {
+  this.inQueue = [];
+  this.outQueue = [];
+}
+
+MyStackTwo.prototype.push = function (element) {
+  this.inQueue.push(element);
+};
+
+MyStackTwo.prototype.pop = function () {
+  // Remove from the front of the queue, but returning the last element in because stack is LIFO
+  while (this.inQueue.length > 1) {
+    this.outQueue.push(this.inQueue.shift());
+  }
+
+  const pop = this.inQueue.shift();
+
+  this.inQueue = this.outQueue;
+  this.outQueue = [];
+
+  return pop;
+};
+
+MyStackTwo.prototype.top = function () {
+  // Remove from the front of the queue, return the last element, and then place all elements back into original queue
+  while (this.inQueue.length > 1) {
+    this.outQueue.push(this.inQueue.shift());
+  }
+
+  const top = this.inQueue.shift();
+
+  this.outQueue.push(top);
+  this.inQueue = this.outQueue;
+  this.outQueue = [];
+
+  return top;
+};
+
+MyStackTwo.prototype.empty = function () {
+  return this.inQueue.length === 0;
+};
+
+const obj2 = new MyStackTwo();
+obj2.push("Michael");
+obj2.push("Hillery");
+const param_22 = obj2.pop();
+const param_33 = obj2.top();
+const param_44 = obj2.empty();
+
+console.log(param_22, param_33, param_44);
