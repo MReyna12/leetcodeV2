@@ -533,3 +533,63 @@ pqTestFive.print();
 console.log(pqTestFive.dequeue());
 console.log(pqTestFive.front());
 console.log(pqTestFive.isEmpty());
+
+// Implement stack using queues
+function MyStackThree() {
+  this.inQueue = [];
+  this.outQueue = [];
+}
+
+// Push
+MyStackThree.prototype.push = function (element) {
+  this.inQueue.push(element);
+};
+
+// Pop
+MyStackThree.prototype.pop = function () {
+  if (this.isEmpty()) {
+    return null;
+  }
+
+  while (this.inQueue.length > 1) {
+    this.outQueue.push(this.inQueue.shift());
+  }
+
+  const lastElement = this.inQueue.shift();
+
+  this.inQueue = this.outQueue;
+  this.outQueue = [];
+
+  return lastElement;
+};
+
+// Top
+MyStackThree.prototype.top = function () {
+  if (this.isEmpty()) {
+    return null;
+  }
+
+  while (this.inQueue.length > 1) {
+    this.outQueue.push(this.inQueue.shift());
+  }
+
+  const topElement = this.inQueue.shift();
+
+  this.outQueue.push(topElement);
+  this.inQueue = this.outQueue;
+  this.outQueue = [];
+
+  return topElement;
+};
+
+// Empty
+MyStackThree.prototype.isEmpty = function () {
+  return this.inQueue.length === 0;
+};
+
+const stackViaQueues = new MyStackThree();
+stackViaQueues.push("Michael");
+stackViaQueues.push("Hillery");
+const popThree = stackViaQueues.pop();
+const topThree = stackViaQueues.top();
+const emptyThree = stackViaQueues.isEmpty();
