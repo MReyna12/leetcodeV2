@@ -431,38 +431,105 @@ console.log(param_22, param_33, param_44);
 
 // Queue Practice
 function QueueFive() {
-  let collection = [];
-
-  // Print the queue
-  this.print = function () {
-    console.log(collection);
-  };
-
-  // Add an element to the queue
-  this.enqueue = function (element) {
-    collection.push(element);
-  };
-
-  // Remove an element from the queue
-  this.dequeue = function () {
-    return collection.shift();
-  };
-
-  // Return the element at the front of the queue
-  this.front = function () {
-    return collection[0];
-  };
-
-  // Determine if the queue is empty
-  this.isEmpty = function () {
-    return collection.length === 0;
-  };
+  // let collection = [];
+  // // Print the queue
+  // this.print = function () {
+  //   console.log(collection);
+  // };
+  // // Add an element to the queue
+  // this.enqueue = function (element) {
+  //   collection.push(element);
+  // };
+  // // Remove an element from the queue
+  // this.dequeue = function () {
+  //   return collection.shift();
+  // };
+  // // Return the element at the front of the queue
+  // this.front = function () {
+  //   return collection[0];
+  // };
+  // // Determine if the queue is empty
+  // this.isEmpty = function () {
+  //   return collection.length === 0;
+  // };
 }
 
+function QueueFive() {
+  this.collection = [];
+}
+
+QueueFive.prototype.print = function () {
+  console.log(this.collection);
+};
+
+QueueFive.prototype.enqueue = function (element) {
+  this.collection.push(element);
+};
+
+QueueFive.prototype.dequeue = function () {
+  return this.collection.shift();
+};
+
+QueueFive.prototype.front = function () {
+  return this.collection[0];
+};
+
+QueueFive.prototype.isEmpty = function () {
+  return this.collection.length === 0;
+};
+
 const testQueueFive = new QueueFive();
-// testQueueFive.enqueue("Michael");
-// testQueueFive.enqueue("Jeffrey");
-// testQueueFive.print();
-// console.log(testQueueFive.dequeue());
-// console.log(testQueueFive.front());
-// console.log(testQueueFive.isEmpty());
+testQueueFive.enqueue("Michael");
+testQueueFive.enqueue("Jeffrey");
+testQueueFive.print();
+console.log(testQueueFive.dequeue());
+console.log(testQueueFive.front());
+console.log(testQueueFive.isEmpty());
+
+function PriorityQueueFive() {
+  this.collection = [];
+}
+
+PriorityQueueFive.prototype.print = function () {
+  console.log(this.collection);
+};
+
+PriorityQueueFive.prototype.enqueue = function (element) {
+  if (this.isEmpty()) {
+    this.collection.push(element);
+  } else {
+    let addedElement = false;
+    for (let i = 0; i < this.collection.length; i++) {
+      if (element[1] < this.collection[i][1]) {
+        this.collection.splice(i, 0, element);
+        addedElement = true;
+        break;
+      }
+    }
+
+    if (!addedElement) {
+      this.collection.push(element);
+    }
+  }
+};
+
+PriorityQueueFive.prototype.dequeue = function () {
+  return this.collection.shift();
+};
+
+PriorityQueueFive.prototype.front = function () {
+  return this.collection[0];
+};
+
+PriorityQueueFive.prototype.isEmpty = function () {
+  return this.collection.length === 0;
+};
+
+const pqTestFive = new PriorityQueueFive();
+pqTestFive.enqueue(["Michael", 3]);
+pqTestFive.enqueue(["Hillery", 1]);
+pqTestFive.enqueue(["Kira", 2]);
+pqTestFive.print();
+console.log(pqTestFive.dequeue());
+console.log(pqTestFive.front());
+console.log(pqTestFive.isEmpty());
