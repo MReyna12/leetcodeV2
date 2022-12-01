@@ -428,3 +428,41 @@ const param_33 = obj2.top();
 const param_44 = obj2.empty();
 
 console.log(param_22, param_33, param_44);
+
+// Queue Practice
+function QueueFive() {
+  let collection = [];
+
+  // Print the queue
+  this.print = function () {
+    console.log(collection);
+  };
+
+  // Add an element to the queue
+  this.enqueue = function (element) {
+    collection.push(element);
+  };
+
+  // Remove an element from the queue
+  this.dequeue = function () {
+    return collection.shift();
+  };
+
+  // Return the element at the front of the queue
+  this.front = function () {
+    return collection[0];
+  };
+
+  // Determine if the queue is empty
+  this.isEmpty = function () {
+    return collection.length === 0;
+  };
+}
+
+const testQueueFive = new QueueFive();
+// testQueueFive.enqueue("Michael");
+// testQueueFive.enqueue("Jeffrey");
+// testQueueFive.print();
+// console.log(testQueueFive.dequeue());
+// console.log(testQueueFive.front());
+// console.log(testQueueFive.isEmpty());
