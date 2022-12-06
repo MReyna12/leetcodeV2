@@ -16,5 +16,3 @@ function firstPalindrome(words) {
 
   return palindrome;
 }
-
-firstPalindrome(["abc", "car", "ada", "racecar", "cool"]);
