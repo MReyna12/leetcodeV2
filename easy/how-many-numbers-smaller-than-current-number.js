@@ -4,7 +4,7 @@ const smallerNumbersThanCurrent = (nums) => {
   // Create the object that will store the current number being evaluated (as a key) and give it a value equal to the number of integers that are less than said current number
   let resultCount = {};
 
-  // First loop determines the current number and will check if we have already seen this number. If we have, then we can just push the value stored in the resultCount object associated with said current number
+  // First loop determines the current number and will check if we have already seen this number. If we have, then we can just push the value stored in the resultCount object associated with said current number and then jump to the next iteration of the loop
   // If we have no seen the number before, we initialize our smaller number count and compare the current number against all integers in the nums array
   for (let i = 0; i < nums.length; i++) {
     let currentNum = nums[i];
