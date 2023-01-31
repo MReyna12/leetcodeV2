@@ -20,3 +20,23 @@ function search(nums, target) {
 
   return -1;
 }
+
+function binarySearch(nums, target) {
+  let lo = 0;
+  let high = nums.length;
+
+  while (lo < hi) {
+    const mid = Math.floor(lo + (high - lo) / 2);
+    const value = nums[mid];
+
+    if (value === target) {
+      return mid;
+    } else if (value < target) {
+      lo = mid + 1;
+    } else if (value > target) {
+      high = mid;
+    }
+  }
+
+  return -1;
+}
