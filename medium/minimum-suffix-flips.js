@@ -30,3 +30,19 @@ const minFlips = (target) => {
 
   return flipCount;
 };
+
+function minFlips(target) {
+  let flipCounter = 0;
+  let previousCharacter = "0";
+
+  for (let i = 0; i < target.length; i++) {
+    const current = target[i];
+
+    if (current !== previousCharacter) {
+      previousCharacter = current;
+      flipCounter++;
+    }
+  }
+
+  return flipCounter;
+}
