@@ -46,3 +46,19 @@ function minFlips(target) {
 
   return flipCounter;
 }
+
+const minFlips = (target) => {
+  let flipCounter = 0;
+  let lastDifferentChar = "0";
+
+  for (let i = 0; i < target.length; i++) {
+    const currentChar = target[i];
+
+    if (currentChar !== lastDifferentChar) {
+      flipCounter++;
+      lastDifferentChar = currentChar;
+    }
+  }
+
+  return flipCounter;
+};
