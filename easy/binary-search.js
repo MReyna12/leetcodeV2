@@ -60,3 +60,23 @@ const binarySearch = (nums, target) => {
 
   return -1;
 };
+
+function binary(nums, target) {
+  let low = 0;
+  let high = nums.length;
+
+  while (low < high) {
+    const mid = Math.floor(low + (high + low) / 2);
+    const currentValue = target[mid];
+
+    if (currentValue === target) {
+      return mid;
+    } else if (currentValue > target) {
+      high = mid;
+    } else if (currentValue < target) {
+      low = mid + 1;
+    }
+  }
+
+  return -1;
+}
