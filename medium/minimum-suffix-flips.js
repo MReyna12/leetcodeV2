@@ -70,7 +70,7 @@ function minFlips(target) {
   for (let i = 0; i < target.length; i++) {
     const currentChar = target[i];
 
-    if (currentChar !== target) {
+    if (currentChar !== previousCharacter) {
       flipCounter++;
       previousCharacter = currentChar;
     }
