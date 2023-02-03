@@ -80,3 +80,23 @@ function binary(nums, target) {
 
   return -1;
 }
+
+const bin = (nums, target) => {
+  let low = 0;
+  let high = nums.length;
+
+  while (low < high) {
+    const mid = Math.floor(low(high + low) / 2);
+    const currentValue = nums[mid];
+
+    if (currentValue === target) {
+      return mid;
+    } else if (currentValue < target) {
+      low = mid + 1;
+    } else if (currentValue > target) {
+      high = mid;
+    }
+  }
+
+  return -1;
+};
